@@ -316,7 +316,7 @@ export abstract class LabWidgetManager
     super.register_model(model_id, modelPromise);
 
     // Update the synchronous model map
-    modelPromise.then((model) => {
+    modelPromise.then(model => {
       this._modelsSync.set(model_id, model);
       model.once('comm:close', () => {
         this._modelsSync.delete(model_id);
@@ -405,7 +405,6 @@ export class KernelWidgetManager extends LabWidgetManager {
     });
 
     this.restoreWidgets();
-
   }
 
   _handleKernelConnectionStatusChange(status: Kernel.ConnectionStatus): void {
@@ -537,11 +536,9 @@ export class WidgetManager extends LabWidgetManager {
     notebook: INotebookModel,
     { loadKernel, loadNotebook } = { loadKernel: true, loadNotebook: true }
   ): Promise<void> {
-
-   await this.context.sessionContext.ready;
+    await this.context.sessionContext.ready;
 
     try {
-
       if (loadKernel) {
         try {
           this._kernelRestoreInProgress = true;

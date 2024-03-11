@@ -56,8 +56,8 @@ import JupyterReactContentFactory from './content/JupyterReactContentFactory';
 import JupyterReactNotebookModelFactory from './model/JupyterReactNotebookModelFactory';
 import {
   INotebookProps,
-//  ExternalIPyWidgets,
-//  BundledIPyWidgets,
+  //  ExternalIPyWidgets,
+  //  BundledIPyWidgets,
 } from './Notebook';
 import { NotebookCommands } from './NotebookCommands';
 import getMarked from './marked/marked';
@@ -70,8 +70,8 @@ export class NotebookAdapter {
   private _boxPanel: BoxPanel;
   private _commandRegistry: CommandRegistry;
   private _context?: Context<INotebookModel>;
-//  private _bundledIPyWidgets?: BundledIPyWidgets[];
-//  private _externalIPyWidgets?: ExternalIPyWidgets[];
+  //  private _bundledIPyWidgets?: BundledIPyWidgets[];
+  //  private _externalIPyWidgets?: ExternalIPyWidgets[];
   private _iPyWidgetsManager?: WidgetManager;
   private _kernel: Kernel;
   private _lite?: Lite;
@@ -94,8 +94,8 @@ export class NotebookAdapter {
     serviceManager: ServiceManager,
     lite?: Lite
   ) {
-//    this._bundledIPyWidgets = props.bundledIPyWidgets;
-//    this._externalIPyWidgets = props.externalIPyWidgets;
+    //    this._bundledIPyWidgets = props.bundledIPyWidgets;
+    //    this._externalIPyWidgets = props.externalIPyWidgets;
     this._kernel = props.kernel!;
     this._lite = lite;
     this._nbformat = props.nbformat;
@@ -117,23 +117,24 @@ export class NotebookAdapter {
     this._commandRegistry = new CommandRegistry();
 
     if (props.url) {
-      this.loadFromUrl(props.url).then((nbformat) => {
+      this.loadFromUrl(props.url).then(nbformat => {
         this._nbformat = nbformat;
         this.setupAdapter();
-      })
-    }
-    else {
+      });
+    } else {
       this.setupAdapter();
     }
   }
 
   async loadFromUrl(url: string) {
-    return fetch(url).then(response => {
-      return response.text();
-    }).then(nb => {
-//      const nbformat = nb.replaceAll('\\n', '');
-      return JSON.parse(nb);
-    });
+    return fetch(url)
+      .then(response => {
+        return response.text();
+      })
+      .then(nb => {
+        //      const nbformat = nb.replaceAll('\\n', '');
+        return JSON.parse(nb);
+      });
   }
 
   private setupAdapter(): void {
@@ -151,7 +152,7 @@ export class NotebookAdapter {
       factory => factory.mimeTypes[0] !== 'text/javascript'
     );
 
-    const ipywidgetsRendererFactory: IRenderMime.IRendererFactory =  {
+    const ipywidgetsRendererFactory: IRenderMime.IRendererFactory = {
       safe: true,
       mimeTypes: [WIDGET_MIMETYPE],
       defaultRank: 1,
@@ -279,7 +280,11 @@ export class NotebookAdapter {
       },
     });
 
-    this._iPyWidgetsManager = new WidgetManager(this._context, this._rendermime, {saveState: false});
+    this._iPyWidgetsManager = new WidgetManager(
+      this._context,
+      this._rendermime,
+      { saveState: false }
+    );
     /*
     this._rendermime!.addFactory(
       {
@@ -294,9 +299,7 @@ export class NotebookAdapter {
     this._context?.sessionContext
       .changeKernel({ id: this._kernel.id })
       .then(() => {
-        this._iPyWidgetsManager?.registerWithKernel(
-          this._kernel.connection
-        );
+        this._iPyWidgetsManager?.registerWithKernel(this._kernel.connection);
       });
 
     /*
@@ -380,9 +383,7 @@ export class NotebookAdapter {
       .getWidgetFactory('Notebook')
       ?.createNew(this._context) as NotebookPanel;
 
-    this._iPyWidgetsManager?.registerWithKernel(
-      this._kernel.connection
-    );
+    this._iPyWidgetsManager?.registerWithKernel(this._kernel.connection);
 
     this._notebookPanel!.sessionContext.kernelChanged.connect(
       (

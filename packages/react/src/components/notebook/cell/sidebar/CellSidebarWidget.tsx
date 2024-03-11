@@ -20,6 +20,7 @@ export type CellSidebarProps = {
   cellId: string;
   command: CommandRegistry;
   nbgrader: boolean;
+  allowSave?: boolean;
 };
 
 export class CellSidebarWidget

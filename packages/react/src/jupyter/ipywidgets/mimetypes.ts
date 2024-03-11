@@ -7,8 +7,7 @@
 /**
  * The mime type for a widget view.
  */
-export const WIDGET_VIEW_MIMETYPE =
-  'application/vnd.jupyter.widget-view+json';
+export const WIDGET_VIEW_MIMETYPE = 'application/vnd.jupyter.widget-view+json';
 
 /**
  * The mime type for widget state data.

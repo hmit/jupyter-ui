@@ -17,24 +17,27 @@ import {
   CircleWhiteIcon,
   CircleYellowIcon,
   CircledMIcon,
-  SquareWhiteLargeIcon
+  SquareWhiteLargeIcon,
 } from '@datalayer/icons-react';
 import { KernelMessage } from '@jupyterlab/services';
-import { ConnectionStatus, IKernelConnection } from '@jupyterlab/services/lib/kernel/kernel';
+import {
+  ConnectionStatus,
+  IKernelConnection,
+} from '@jupyterlab/services/lib/kernel/kernel';
 import { Environment } from '../environment/Environment';
 
-type KernelState = 
-  'connecting' |
-  'connected-unknown' |
-  'connected-starting' |
-  'connected-idle' |
-  'connected-busy' |
-  'connected-terminating' |
-  'connected-restarting' |
-  'connected-autorestarting' |
-  'connected-dead' |
-  'disconnecting' | 
-  'undefined';
+type KernelState =
+  | 'connecting'
+  | 'connected-unknown'
+  | 'connected-starting'
+  | 'connected-idle'
+  | 'connected-busy'
+  | 'connected-terminating'
+  | 'connected-restarting'
+  | 'connected-autorestarting'
+  | 'connected-dead'
+  | 'disconnecting'
+  | 'undefined';
 
 /**
  * The valid kernel connection states.
@@ -87,24 +90,24 @@ export const KernelIndicator = (props: Props) => {
     ) {
       return connectionStatus as KernelState;
     }
-    return connectionStatus + '-' + status as KernelState;
+    return (connectionStatus + '-' + status) as KernelState;
   };
   useEffect(() => {
     if (kernel) {
       setConnectionStatus(kernel?.connectionStatus);
       setStatus(kernel?.status);
-      kernel.connectionStatusChanged.connect(
-        (_, connectionStatus) => {
-          setConnectionStatus(connectionStatus);
-        }
-      );
+      kernel.connectionStatusChanged.connect((_, connectionStatus) => {
+        setConnectionStatus(connectionStatus);
+      });
       kernel.statusChanged.connect((_, status) => {
         setStatus(status);
       });
     }
   }, [kernel]);
   return connectionStatus && status ? (
-    <Tooltip aria-label={`${connectionStatus} - ${status} - ${env?.display_name}`}>
+    <Tooltip
+      aria-label={`${connectionStatus} - ${status} - ${env?.display_name}`}
+    >
       {KERNEL_STATES.get(toState(connectionStatus, status))}
     </Tooltip>
   ) : (

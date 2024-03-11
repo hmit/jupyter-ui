@@ -258,7 +258,8 @@ export class KernelExecutor {
   /**
    * Signal emitted when the outputs list changes.
    */
-  get outputsChanged(): ISignal<KernelExecutor, IOutput[]> {0
+  get outputsChanged(): ISignal<KernelExecutor, IOutput[]> {
+    0;
     return this._outputsChanged;
   }
 
@@ -268,7 +269,6 @@ export class KernelExecutor {
   get modelChanged(): ISignal<KernelExecutor, IOutputAreaModel> {
     return this._modelChanged;
   }
-
 }
 
 export default KernelExecutor;

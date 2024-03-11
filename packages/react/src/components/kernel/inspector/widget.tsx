@@ -15,10 +15,7 @@ import {
 import { UUID } from '@lumino/coreutils';
 import { Message as luminoMessage } from '@lumino/messaging';
 import { Widget, BoxLayout } from '@lumino/widgets';
-import {
-  ObjectInspector,
-  ObjectLabel,
-} from 'react-inspector';
+import { ObjectInspector, ObjectLabel } from 'react-inspector';
 import { KernelSpyModel, ThreadIterator } from './model';
 
 import './kernelinspector.css';

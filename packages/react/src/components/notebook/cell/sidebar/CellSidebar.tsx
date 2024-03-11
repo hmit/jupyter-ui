@@ -14,6 +14,7 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
   SquareIcon,
+  FileIcon,
 } from '@primer/octicons-react';
 import { notebookActions, selectActiveCell } from '../../NotebookRedux';
 import { CellSidebarProps } from './CellSidebarWidget';
@@ -181,6 +182,26 @@ export const CellSidebar = (props: CellSidebarProps) => {
           Code
         </Button>
       </span>
+      {props.allowSave && (
+        <span style={{ display: 'flex' }}>
+          <Button
+            title="Save notebook"
+            leadingVisual={FileIcon}
+            variant="invisible"
+            size="small"
+            onClick={(e: any) => {
+              dispatch(
+                notebookActions.save.started({
+                  uid: notebookId,
+                  date: new Date(),
+                })
+              );
+            }}
+          >
+            Save
+          </Button>
+        </span>
+      )}
       <span style={{ display: 'flex' }}>
         <Button
           title="Delete cell"

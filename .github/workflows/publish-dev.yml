@@ -3,7 +3,6 @@ on:
   push:
     branches:
         - main
-        - upgrade
   release:
     types: [published]
   # FIXME workflow_dispatch should not be needed
@@ -16,7 +15,7 @@ concurrency:
 jobs:
   publish:
     # Forbid manual execution on non-main branches
-    if: github.ref_name == 'main' || github.ref_name == 'upgrade'
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     permissions:
       contents: write

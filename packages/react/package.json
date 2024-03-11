@@ -152,6 +152,7 @@
     "react-sparklines": "1.7.0",
     "redux": "4.2.1",
     "redux-observable": "1.2.0",
+    "regl": "^2.1.0",
     "rxjs": "6.6.0",
     "styled-components": "5.3.10",
     "typescript-fsa": "2.5.0",

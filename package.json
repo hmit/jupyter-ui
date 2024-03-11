@@ -1,5 +1,5 @@
 {
-  "name": "@hmit/jupyter-ui",
+  "name": "@datalayer/jupyter-ui",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -308,8 +308,5 @@
     "webpack-dev-server": "4.9.3",
     "y-websocket": "1.4.5",
     "yjs": "13.5.47"
-  },
-  "dependencies": {
-    "regl": "^2.1.0"
   }
 }

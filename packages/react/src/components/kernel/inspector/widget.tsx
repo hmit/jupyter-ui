@@ -18,7 +18,6 @@ import { Widget, BoxLayout } from '@lumino/widgets';
 import {
   ObjectInspector,
   ObjectLabel,
-  InspectorNodeParams,
 } from 'react-inspector';
 import { KernelSpyModel, ThreadIterator } from './model';
 
@@ -52,7 +51,7 @@ const theme = {
   TREENODE_PADDING_LEFT: 12,
 };
 
-function msgNodeRenderer(args: InspectorNodeParams) {
+function msgNodeRenderer(args: any) {
   const { name, depth, isNonenumerable, data } = args;
   if (depth !== 0) {
     return (
